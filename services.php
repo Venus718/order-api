@@ -13,9 +13,6 @@ $container
 $container
     ->register('db', '\dl\DB');
 
-/** DL */
-$container
-    ->register('dl', '\dl\DL');
 
 /** Catalog */
 $container
@@ -23,4 +20,9 @@ $container
     ->addArgument(new Reference('db'))
 ;
 
+/** DL */
+$container
+    ->register('dl', '\dl\DL')
+    ->addArgument(new Reference('catalog'))
+;
 
