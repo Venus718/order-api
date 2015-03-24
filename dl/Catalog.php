@@ -9,15 +9,8 @@
 namespace dl;
 
 
-class Catalog {
+class Catalog extends DLO {
 
-    /** @var  IDB */
-    private $db;
-
-    function __construct(IDB $db)
-    {
-        $this->db = $db;
-    }
 
     public function getFormatsCatalog()
     {

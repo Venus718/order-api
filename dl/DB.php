@@ -13,15 +13,15 @@ use PDO;
 
 class DB implements IDB
 {
-    private $db_host = "81.218.173.203";
+    /*private $db_host = "81.218.173.203";
     private $db_name = "fontbit_import";
     private $db_user = "fontbit_order";
-    private $db_pswd = "qazwsx12";
+    private $db_pswd = "qazwsx12";*/
 
-    /*private $db_host = "127.0.0.1";
+    private $db_host = "127.0.0.1";
     private $db_name = "fontbit_import";
     private $db_user = "fontbit_import";
-    private $db_pswd = "123";*/
+    private $db_pswd = "123";
 
     private function getDB()
     {

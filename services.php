@@ -20,9 +20,10 @@ $container
     ->addArgument(new Reference('db'))
 ;
 
-/** DL */
+/** Lead */
 $container
-    ->register('dl', '\dl\DL')
-    ->addArgument(new Reference('catalog'))
+    ->register('lead', '\dl\Lead')
+    ->addArgument(new Reference('db'))
 ;
+
 

@@ -22,21 +22,22 @@ $context = new Routing\RequestContext();
 $context->fromRequest($request);
 $matcher = new Routing\Matcher\UrlMatcher($routes, $context);
 
-/** @var \dl\DL $dl */
-$dl = $container->get('dl');
 
 try {
     extract($matcher->match($request->getPathInfo()), EXTR_SKIP);
 
     switch($_route) {
-        case 'fontsCatalog':
-            $response = new JsonResponse($dl->getCatalog()->getFontsCatalog(), 200);
+        case 'catalog_fonts':
+            $response = new JsonResponse($container->get('catalog')->getFontsCatalog(), 200);
             break;
-        case 'formatsCatalog':
-            $response = new JsonResponse($dl->getCatalog()->getFormatsCatalog(), 200);
+        case 'catalog_formats':
+            $response = new JsonResponse($container->get('catalog')->getFormatsCatalog(), 200);
+            break;
+        case 'lead_create':
+            $response = new JsonResponse($container->get('lead')->createLead($request), 200);
             break;
         default:
-            $response = new JsonResponse('fuck', 200);
+            $response = new JsonResponse('fuck', 500);
     }
 
 } catch (Routing\Exception\ResourceNotFoundException $e) {

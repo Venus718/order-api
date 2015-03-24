@@ -11,13 +11,18 @@ use Symfony\Component\Routing;
 $routes = new Routing\RouteCollection();
 
 
-$routes->add('fontsCatalog', new Routing\Route(
-    '/fonts-catalog',
+$routes->add('catalog_fonts', new Routing\Route(
+    '/catalog-fonts',
     array()
 ));
 
-$routes->add('formatsCatalog', new Routing\Route(
-    '/formats-catalog',
+$routes->add('catalog_formats', new Routing\Route(
+    '/catalog-formats',
+    array()
+));
+
+$routes->add('lead_create', new Routing\Route(
+    '/lead/create',
     array()
 ));
 
