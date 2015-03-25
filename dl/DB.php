@@ -51,4 +51,10 @@ class DB implements IDB
         $db = $this->getDB();
         return $db->prepare($sql);
     }
+
+    public function getStatementAndDb($sql)
+    {
+        $db = $this->getDB();
+        return array($db->prepare($sql), $db);
+    }
 } 

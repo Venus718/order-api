@@ -1,0 +1,159 @@
+<?php
+/**
+ * leadform.php
+ * User: sami
+ * Date: 24-Mar-15
+ * Time: 3:42 PM
+ */
+?>
+<!doctype html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>leadform</title>
+    <style>
+        .group_row{
+            display: table-row;
+        }
+        .group_row div{
+            display: table-cell;
+        }
+        body {
+            direction: rtl;
+        }
+    </style>
+</head>
+<body>
+    <form id="theForm">
+        <table>
+            <tr>
+                <td>name</td>
+                <td><input name="name" value="name"/></td>
+            </tr>
+            <tr>
+                <td>company_name_he</td>
+                <td><input name="company_name_he" value="company_name_he"/></td>
+            </tr>
+            <tr>
+                <td>company_name_en</td>
+                <td><input name="company_name_en" value="company_name_en"/></td>
+            </tr>
+            <tr>
+                <td>phone</td>
+                <td><input name="phone" value="phone"/></td>
+            </tr>
+            <tr>
+                <td>ext</td>
+                <td><input name="ext" value="ext"/></td>
+            </tr>
+            <tr>
+                <td>mobile</td>
+                <td><input name="mobile" value="mobile"/></td>
+            </tr>
+            <tr>
+                <td>fax</td>
+                <td><input name="fax" value="fax"/></td>
+            </tr>
+            <tr>
+                <td>mail</td>
+                <td><input name="mail" value="mail"/></td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td><input name="address" value="address"/></td>
+            </tr>
+            <tr>
+                <td>remarks</td>
+                <td><input name="remarks" value="remarks"/></td>
+            </tr>
+            <tr>
+                <td>otf</td>
+                <td><input name="otf" value="1" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td>pc</td>
+                <td><input name="pc" value="1" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td>mac</td>
+                <td><input name="mac" value="1" type="checkbox"/></td>
+            </tr>
+
+        </table>
+        <div id="fonts_container"></div>
+        <div>
+            <button id="send" value="cake">cakes</button>
+        </div>
+    </form>
+
+    <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script>
+        function makeRowClick(grpId) {
+            return function() {
+                var checked = $("#grp_chk_" + grpId).is(":checked");
+                $("input", $("#group_" + grpId)).each(function() {
+                    $(this).prop('checked', checked);
+                });
+            };
+        }
+
+        function buildCatalog() {
+            $.ajax(
+                'http://localhost:8090/fontbit_order/api.php/catalog-fonts'
+            ).then(function(catalog) {
+                    console.log(catalog);
+                    var container = $("#fonts_container");
+                    for(group in catalog) {
+                        var row = $("<div id='group_"+group+"' class='group_row'></div>");
+                        var grp_div = $("<div class='grp_div'></div>");
+                        var grp_chk = $("<input type='checkbox' id='grp_chk_"+group+"' class='grp_chk'/>");
+                        grp_chk.click(makeRowClick(group));
+                        grp_div.append(grp_chk);
+                        grp_div.append($("<label for='grp_chk_"+group+"'>"+catalog[group]["name"]+"</label>"));
+                        row.append(grp_div);
+
+                        for(var i = 0; i < catalog[group]["fonts"].length; i++) {
+                            var f = catalog[group]["fonts"][i];
+                            var fnt_div = $("<div class='fnt_div'></div>");
+                            fnt_div.append($("<input type='checkbox' id='fnt_chk_"+ f.id+"' class='fnt_chk' name='fonts[]' value='"+ f.id+"'/>"));
+                            fnt_div.append($("<label for='fnt_chk_"+ f.id+"'>"+ f.weight+"</label>"));
+                            row.append(fnt_div);
+
+
+                        }
+                        container.append(row);
+                    }
+                });
+        }
+
+
+        $(function() {
+
+            buildCatalog();
+
+            function doSubmit() {
+                $.ajax(
+                    'http://localhost:8090/fontbit_order/api.php/lead/create',
+                    {
+                        'data': $("#theForm").serialize(),
+                        'method': 'POST'
+                    }
+                ).then(function(reply) {
+                        console.log(reply);
+                    });
+            }
+
+            $("#theForm").submit(function(e) {
+                doSubmit();
+                e.preventDefault();
+                return false;
+            })
+
+            $("#send").click(function() {
+                doSubmit();
+                return false;
+            })
+        })
+    </script>
+</body>
+</html>

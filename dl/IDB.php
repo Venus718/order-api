@@ -15,4 +15,6 @@ interface IDB {
     public function execSql($sql);
 
     public function getStatement($sql);
+
+    public function getStatementAndDb($sql);
 }
