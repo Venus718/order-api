@@ -27,63 +27,90 @@
     <form id="theForm">
         <table>
             <tr>
-                <td>name</td>
-                <td><input name="name" value="name"/></td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td>username</td>
+                            <td><input name="username"/> </td>
+                        </tr>
+                        <tr>
+                            <td>password</td>
+                            <td><input name="password" type="password"/> </td>
+                        </tr>
+                    </table>
+                </td>
+                <td valign="top">
+                    <table>
+                        <tr>
+                            <td>name</td>
+                            <td><input name="name" value="name"/></td>
+                        </tr>
+                        <tr>
+                            <td>company_name_he</td>
+                            <td><input name="company_name_he" value="company_name_he"/></td>
+                        </tr>
+                        <tr>
+                            <td>company_name_en</td>
+                            <td><input name="company_name_en" value="company_name_en"/></td>
+                        </tr>
+                        <tr>
+                            <td>phone</td>
+                            <td><input name="phone" value="phone"/></td>
+                        </tr>
+                        <tr>
+                            <td>ext</td>
+                            <td><input name="ext" value="ext"/></td>
+                        </tr>
+                        <tr>
+                            <td>mobile</td>
+                            <td><input name="mobile" value="mobile"/></td>
+                        </tr>
+                        <tr>
+                            <td>fax</td>
+                            <td><input name="fax" value="fax"/></td>
+                        </tr>
+                        <tr>
+                            <td>mail</td>
+                            <td><input name="mail" value="mail"/></td>
+                        </tr>
+                        <tr>
+                            <td>address</td>
+                            <td><input name="address" value="address"/></td>
+                        </tr>
+                    </table>
+                </td>
             </tr>
             <tr>
-                <td>company_name_he</td>
-                <td><input name="company_name_he" value="company_name_he"/></td>
+                <td colspan="2" align="right">
+                    <table>
+                        <tr>
+                            <td>remarks</td>
+                            <td><textarea name="remarks"></textarea></td>
+                        </tr>
+                        <tr>
+                            <td>otf</td>
+                            <td><input name="otf" value="1" type="checkbox"/></td>
+                        </tr>
+                        <tr>
+                            <td>pc</td>
+                            <td><input name="pc" value="1" type="checkbox"/></td>
+                        </tr>
+                        <tr>
+                            <td>mac</td>
+                            <td><input name="mac" value="1" type="checkbox"/></td>
+                        </tr>
+                    </table>
+                    <div id="fonts_container"></div>
+                </td>
             </tr>
             <tr>
-                <td>company_name_en</td>
-                <td><input name="company_name_en" value="company_name_en"/></td>
+                <td colspan="2">
+                    <div>
+                        <button id="send" value="cake">cakes</button>
+                    </div>
+                </td>
             </tr>
-            <tr>
-                <td>phone</td>
-                <td><input name="phone" value="phone"/></td>
-            </tr>
-            <tr>
-                <td>ext</td>
-                <td><input name="ext" value="ext"/></td>
-            </tr>
-            <tr>
-                <td>mobile</td>
-                <td><input name="mobile" value="mobile"/></td>
-            </tr>
-            <tr>
-                <td>fax</td>
-                <td><input name="fax" value="fax"/></td>
-            </tr>
-            <tr>
-                <td>mail</td>
-                <td><input name="mail" value="mail"/></td>
-            </tr>
-            <tr>
-                <td>address</td>
-                <td><input name="address" value="address"/></td>
-            </tr>
-            <tr>
-                <td>remarks</td>
-                <td><input name="remarks" value="remarks"/></td>
-            </tr>
-            <tr>
-                <td>otf</td>
-                <td><input name="otf" value="1" type="checkbox"/></td>
-            </tr>
-            <tr>
-                <td>pc</td>
-                <td><input name="pc" value="1" type="checkbox"/></td>
-            </tr>
-            <tr>
-                <td>mac</td>
-                <td><input name="mac" value="1" type="checkbox"/></td>
-            </tr>
-
         </table>
-        <div id="fonts_container"></div>
-        <div>
-            <button id="send" value="cake">cakes</button>
-        </div>
     </form>
 
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
