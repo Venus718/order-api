@@ -18,10 +18,19 @@ class DB implements IDB
     private $db_user = "fontbit_order";
     private $db_pswd = "qazwsx12";*/
 
-    private $db_host = "127.0.0.1";
+    /*private $db_host = "127.0.0.1";
     private $db_name = "fontbit_import";
     private $db_user = "fontbit_import";
-    private $db_pswd = "123";
+    private $db_pswd = "123";*/
+
+    function __construct($db_host, $db_name, $db_user, $db_pswd)
+    {
+        $this->db_host = $db_host;
+        $this->db_name = $db_name;
+        $this->db_user = $db_user;
+        $this->db_pswd = $db_pswd;
+    }
+
 
     private function getDB()
     {

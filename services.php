@@ -3,6 +3,8 @@
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 
+require('consts.php');
+
 $container = new ContainerBuilder();
 
 /** Pswd */
@@ -11,7 +13,12 @@ $container
 
 /** DB */
 $container
-    ->register('db', '\dl\DB');
+    ->register('db', '\dl\DB')
+    ->addArgument(DB_HOST)
+    ->addArgument(DB_NAME)
+    ->addArgument(DB_USER)
+    ->addArgument(DB_PSWD)
+;
 
 
 /** Catalog */
