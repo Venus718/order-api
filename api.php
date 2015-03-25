@@ -10,7 +10,6 @@ require __DIR__ . '/header.php';
 
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing;
 
