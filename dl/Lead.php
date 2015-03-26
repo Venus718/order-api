@@ -67,7 +67,7 @@ class Lead extends DLO {
         return $reply;
     }
 
-    private function doCreateLead($data)
+    public function doCreateLead($data)
     {
         $sql = '
           INSERT INTO `lead`
@@ -155,7 +155,7 @@ class Lead extends DLO {
         return $this->db->execSql($sql . implode(',', $values));
     }
 
-    private function attachLeadToContact($leadId, $username, $password)
+    public function attachLeadToContact($leadId, $username, $password)
     {
         $contactId = $this->contact->getContactId($username, $password);
         if(!(0 < $contactId)) {

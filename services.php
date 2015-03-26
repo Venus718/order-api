@@ -41,5 +41,11 @@ $container
     ->addArgument(new Reference('contact'))
 ;
 
+/** LeadController */
+$container
+    ->register('controller.lead', '\controller\LeadController')
+    ->addArgument(new Reference('lead'))
+;
+
 
 

@@ -33,7 +33,7 @@ try {
             $response = new JsonResponse($container->get('catalog')->getFormatsCatalog(), 200);
             break;
         case 'lead_create':
-            $response = new JsonResponse($container->get('lead')->createLead($request), 200);
+            $response = new JsonResponse($container->get('controller.lead')->createLeadAction($request), 200);
             break;
         default:
             $response = new JsonResponse('fuck', 500);
