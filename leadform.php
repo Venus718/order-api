@@ -115,6 +115,9 @@
 
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script>
+        var api_url = 'http://81.218.173.203/order/api.php';
+        var api_url = 'api.php';
+
         function makeRowClick(grpId) {
             return function() {
                 var checked = $("#grp_chk_" + grpId).is(":checked");
@@ -126,7 +129,7 @@
 
         function buildCatalog() {
             $.ajax(
-                'http://localhost:8090/fontbit_order/api.php/catalog-fonts'
+                api_url + '/catalog-fonts'
             ).then(function(catalog) {
                     console.log(catalog);
                     var container = $("#fonts_container");
@@ -160,7 +163,7 @@
 
             function doSubmit() {
                 $.ajax(
-                    'http://localhost:8090/fontbit_order/api.php/lead/create',
+                    api_url + '/lead/create',
                     {
                         'data': $("#theForm").serialize(),
                         'method': 'POST'
