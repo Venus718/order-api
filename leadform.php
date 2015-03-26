@@ -162,15 +162,22 @@
             buildCatalog();
 
             function doSubmit() {
-                $.ajax(
+                var j = $.ajax(
                     api_url + '/lead/create',
                     {
                         'data': $("#theForm").serialize(),
-                        'method': 'POST'
+                        'method': 'POST',
+                        'success': function(reply) {
+                            if(!reply.success) {
+                                alert(reply.err);
+                            } else {
+                                document.location = 'afterlead.php';
+                            }
+
+                        }
                     }
-                ).then(function(reply) {
-                        console.log(reply);
-                    });
+                );
+                return j.promise();
             }
 
             $("#theForm").submit(function(e) {
