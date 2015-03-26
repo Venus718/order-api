@@ -52,7 +52,7 @@ class DB implements IDB
     public function execSql($sql)
     {
         $db = $this->getDB();
-        $db->exec($sql);
+        return $db->exec($sql);
     }
 
     public function getStatement($sql)

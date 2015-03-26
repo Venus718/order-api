@@ -48,6 +48,9 @@ class Lead extends DLO {
         $data['mac'] = $request->request->get('mac', 0);
         $data['fonts'] = $request->request->get('fonts', array());
 
+        $username = $request->request->get('username', array());
+        $password = $request->request->get('password', array());
+
         if(false === ($id = $this->doCreateLead($data))) {
             $reply['success'] = false;
             $reply['err'] = 'Failed to create lead';
@@ -55,6 +58,10 @@ class Lead extends DLO {
             $reply['success'] = true;
             $reply['data']['leadId'] = $id;
             $reply['data']['leadCode'] = $id + self::CODE_OFFSET;
+            $attachedTo = $this->attachLeadToContact($id, $username, $password);
+            if(0 < $attachedTo) {
+                $reply['data']['attachedTo'] = $attachedTo;
+            }
         }
 
         return $reply;
@@ -146,6 +153,30 @@ class Lead extends DLO {
             return false;
         }
         return $this->db->execSql($sql . implode(',', $values));
+    }
+
+    private function attachLeadToContact($leadId, $username, $password)
+    {
+        $contactId = $this->contact->getContactId($username, $password);
+        if(!(0 < $contactId)) {
+            return -1;
+        }
+        if($this->doAttachLeadToContact($leadId, $contactId)) {
+            return $contactId;
+        }
+        return -2;
+    }
+
+    private function doAttachLeadToContact($leadId, $contactId)
+    {
+        $leadId = intval($leadId, 10);
+        $contactId = intval($contactId, 10);
+        if(!(0 < $leadId) || !(0 < $contactId)) {
+            return false;
+        }
+        return (1 == $this->db->execSql(
+                'update lead set contactId=' . $contactId . ' where id = ' . $leadId . ' and contactId is null;'
+            ));
     }
 
 }
