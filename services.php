@@ -27,10 +27,19 @@ $container
     ->addArgument(new Reference('db'))
 ;
 
+/** Contact */
+$container
+    ->register('contact', '\dl\Contact')
+    ->addArgument(new Reference('db'))
+    ->addArgument(new Reference('pswd'))
+;
+
 /** Lead */
 $container
     ->register('lead', '\dl\Lead')
     ->addArgument(new Reference('db'))
+    ->addArgument(new Reference('contact'))
 ;
+
 
 

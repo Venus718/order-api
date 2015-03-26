@@ -15,6 +15,15 @@ class Lead extends DLO {
 
     const CODE_OFFSET = 50000;
 
+    private $contact;
+
+    function __construct(IDB $db, Contact $contact)
+    {
+        parent::__construct($db);
+        $this->contact = $contact;
+    }
+
+
     public function createLead(Request $request)
     {
 
