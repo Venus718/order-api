@@ -179,4 +179,27 @@ class Lead extends DLO {
             ));
     }
 
+    public function getLead($leadId)
+    {
+        $leadId = intval($leadId, 10);
+        if(!(0 < $leadId)) {
+            return -1;
+        }
+
+        $stmt = $this->db->getStatement("select * from lead where id=:id");
+        if(!$stmt->execute(array(':id' => $leadId))) {
+            return -2;
+        }
+        $res = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $res['fonts'] = array();
+        $fontsStmt = $this->db->getStatement("select font_id from lead_font where lead_id=:font_id");
+        if($fontsStmt->execute(array(':font_id' => $leadId))) {
+            while($row = $fontsStmt->fetch(\PDO::FETCH_ASSOC)) {
+                $res['fonts'] []= $row['font_id'];
+            }
+        }
+        return $res;
+    }
+
 }

@@ -11,6 +11,7 @@ namespace controller;
 
 use dl\Lead;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LeadController {
 
@@ -52,6 +53,7 @@ class LeadController {
             $reply['success'] = false;
             $reply['err'] = 'Failed to create lead';
         } else {
+            $this->storeLeadIdInSession($id);
             $reply['success'] = true;
             $reply['data']['leadId'] = $id;
             $reply['data']['leadCode'] = $id + Lead::CODE_OFFSET;
@@ -62,6 +64,23 @@ class LeadController {
         }
 
         return $reply;
+    }
+
+    public function getLeadAction($id)
+    {
+        return $this->leadDO->getLead($id);
+    }
+
+    private function storeLeadIdInSession($leadId)
+    {
+        $session = new Session();
+        $session->set('lastLeadId', $leadId);
+    }
+
+    public function getLastLeadId()
+    {
+        $session = new Session();
+        return $session->get('lastLeadId', 0);
     }
 
 }

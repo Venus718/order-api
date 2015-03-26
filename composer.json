@@ -1,6 +1,6 @@
 {
     "require": {
-        "symfony/http-foundation": "2.6.x",
+        "symfony/http-foundation": "~2.6",
         "symfony/class-loader": "2.6.x",
         "symfony/dependency-injection": "2.6.x",
         "symfony/var-dumper": "~2.6",

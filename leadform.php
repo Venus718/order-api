@@ -171,6 +171,7 @@
                             if(!reply.success) {
                                 alert(reply.err);
                             } else {
+                                alert(reply.data.leadId)
                                 document.location = 'afterlead.php';
                             }
 
