@@ -9,4 +9,5 @@ require __DIR__ . '/header.php';
 
 /** @var \controller\LeadController $leadController */
 $leadController = $container->get('controller.lead');
-dump($leadController->getLeadAction($leadController->getLastLeadId()) );
+$theLead = $leadController->getLeadAction($leadController->getLastLeadId());
+dump($theLead);
