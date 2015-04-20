@@ -35,6 +35,12 @@ try {
         case 'lead_create':
             $response = new JsonResponse($container->get('controller.lead')->createLeadAction($request), 200);
             break;
+        case 'token_credits':
+            $response = new JsonResponse($container->get('controller.contact')->getCreditsFromTokenAction($request), 200);
+            break;
+        case 'token_get':
+            $response = new JsonResponse($container->get('controller.contact')->getTokenAction($request), 200);
+            break;
         default:
             $response = new JsonResponse('fuck', 500);
     }

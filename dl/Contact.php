@@ -42,6 +42,28 @@ class Contact extends DLO {
         return -3;
     }
 
+    public function getTokenCredits($tokenVal = '')
+    {
+
+        $stmt = $this->db->getStatement('
+            SELECT
+              getCustomerCredits(co.costumerId)
+            FROM
+              `contacttoken` t
+              inner join   contact co on (co.id=t.contactId)
+            WHERE
+              val=:val
+              and (now() between t.`creationDateTime` and t.`expiry`)
+              and (0 = t.`cancelled`)
+        ');
+
+        if (!($stmt->execute(array(':val' => $tokenVal)))) {
+            throw new NotFoundException();
+        }
+
+        return $stmt->fetchColumn();
+    }
+
     private function findByUsername($username)
     {
         $stmt = $this->db->getStatement('select id, pswd from contact where username=:username limit 1;');

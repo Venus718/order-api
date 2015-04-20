@@ -115,7 +115,6 @@
 
     <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
     <script>
-        var api_url = 'http://81.218.173.203/order/api.php';
         var api_url = 'api.php';
 
         function makeRowClick(grpId) {

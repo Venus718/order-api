@@ -11,6 +11,17 @@ $container = new ContainerBuilder();
 $container
     ->register('pswd', '\utils\Pswd');
 
+/** HttpClient */
+$container
+    ->register('httpClient', '\utils\HttpClient');
+
+/** Diablo */
+$container
+    ->register('diablo', '\fontbit\Diablo')
+    ->addArgument(new Reference('httpClient'))
+    ->addArgument('http://hakaveret.fontbit.co.il/~crm/')
+;
+
 /** DB */
 $container
     ->register('db', '\dl\DB')
@@ -20,6 +31,11 @@ $container
     ->addArgument(DB_PSWD)
 ;
 
+/** Font */
+$container
+    ->register('font', '\dl\Font')
+    ->addArgument(new Reference('db'))
+;
 
 /** Catalog */
 $container
@@ -46,6 +62,15 @@ $container
     ->register('controller.lead', '\controller\LeadController')
     ->addArgument(new Reference('lead'))
 ;
+
+/** ContactController */
+$container
+    ->register('controller.contact', '\controller\ContactController')
+    ->addArgument(new Reference('contact'))
+    ->addArgument(new Reference('diablo'))
+;
+
+
 
 
 
