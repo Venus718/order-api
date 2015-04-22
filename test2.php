@@ -356,8 +356,12 @@
             buildCatalog();
 
             function doSubmit() {
+                var action = (isLoggedIn())
+                    ? "/sale/create"
+                    : "/lead/create"
+                ;
                 var j = $.ajax(
-                    api_url + '/lead/create',
+                    api_url + action,
                     {
                         'data': $("#theForm").serialize(),
                         'method': 'POST',

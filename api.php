@@ -35,6 +35,9 @@ try {
         case 'lead_create':
             $response = new JsonResponse($container->get('controller.lead')->createLeadAction($request), 200);
             break;
+        case 'sale_create':
+            $response = new JsonResponse($container->get('controller.sale')->createSaleAction($request), 200);
+            break;
         case 'token_credits':
             $response = new JsonResponse($container->get('controller.contact')->getCreditsFromTokenAction($request), 200);
             break;

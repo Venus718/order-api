@@ -57,10 +57,22 @@ $container
     ->addArgument(new Reference('contact'))
 ;
 
+/** Sale */
+$container
+    ->register('sale', '\dl\Sale')
+    ->addArgument(new Reference('db'))
+;
+
 /** LeadController */
 $container
     ->register('controller.lead', '\controller\LeadController')
     ->addArgument(new Reference('lead'))
+;
+
+/** SaleController */
+$container
+    ->register('controller.sale', '\controller\SaleController')
+    ->addArgument(new Reference('sale'))
 ;
 
 /** ContactController */

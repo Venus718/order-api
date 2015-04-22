@@ -13,7 +13,7 @@ use dl\Lead;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class LeadController {
+class LeadController extends Controller {
 
     private $leadDO;
 
@@ -25,11 +25,7 @@ class LeadController {
 
     public function createLeadAction(Request $request)
     {
-        $reply = array(
-            'success' => false,
-            'err' => '',
-            'data' => array(),
-        );
+        $reply = $this->initReply();
 
         $data['name'] = $request->request->get('name', null);
         $data['company_name_he'] = $request->request->get('company_name_he', null);

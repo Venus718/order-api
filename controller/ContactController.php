@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-class ContactController {
+class ContactController extends Controller {
 
     private $contactDO;
 
@@ -33,11 +33,7 @@ class ContactController {
     {
         $tokenVal = $request->request->get('token', $request->query->get('token', ''));
 
-        $reply = array(
-            'success' => false,
-            'err' => '',
-            'data' => array(),
-        );
+        $reply = $this->initReply();
 
         try {
             $credits = $this->contactDO->getTokenCredits($tokenVal);
@@ -72,11 +68,7 @@ class ContactController {
         $password = $request->query->get('password', '');
 
 
-        $diabloReply = array(
-            'success' => false,
-            'err' => '',
-            'data' => array(),
-        );
+        $diabloReply = $this->initReply();
 
         try {
             $diabloReply = json_decode($this->diablo->getToken($username, $password));
@@ -87,4 +79,6 @@ class ContactController {
 
         return $diabloReply;
     }
+
+
 }

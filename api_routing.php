@@ -26,6 +26,11 @@ $routes->add('lead_create', new Routing\Route(
     array()
 ));
 
+$routes->add('sale_create', new Routing\Route(
+    '/sale/create',
+    array()
+));
+
 $routes->add('token_credits', new Routing\Route(
     '/token/get-credits',
     array()
