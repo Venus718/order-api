@@ -173,6 +173,7 @@
                 if(reply.success) {
                     token.val = reply.data.token;
                     token.expiry = reply.data.expiry;
+                    credits = 0;
                     observer.event("login_success").publish();
                 } else {
                     observer.event("login_failed").publish();
@@ -240,8 +241,19 @@
             alert("שם משתמש או סיסמה שגויים");
         }
 
+        function onGetCreditsFailed() {
+            credits = 0;
+            onCreditsUpdated();
+        }
+
+        function warnAboutNotEnoughCredits() {
+            if (isLoggedIn() && (getSelectedFontsCount() > credits)) {
+                alert("חרגת מכמות הקרדיטים");
+            }
+        }
         function onCreditsUpdated() {
             updateCreditsEl(credits);
+            warnAboutNotEnoughCredits();
         }
 
         $(function() {
@@ -257,6 +269,14 @@
                onCreditsUpdated();
             });
 
+            observer.event("getCredits_failed").subscribe(function() {
+                onGetCreditsFailed();
+            });
+
+            observer.event("selectedCountChanged").subscribe(function(selectedCount) {
+                warnAboutNotEnoughCredits();
+            });
+
             $("#doLogin").click(function() {
                 login();
             });
@@ -264,12 +284,14 @@
     </script>
 
     <script>
-        function getCheckedFontsCount() {
+        function getSelectedFontsCount() {
             return $(".fnt_chk:checked").length;
         }
 
         function onFontSelection() {
-            $(".fontsCount").text(getCheckedFontsCount());
+            var selectedCount = getSelectedFontsCount();
+            $(".fontsCount").text(selectedCount);
+            observer.event("selectedCountChanged").publish(selectedCount);
         }
 
         function makeRowClick(grpId) {
@@ -306,6 +328,13 @@
                         }
                         container.append(row);
                     }
+                }).then(function() {
+                    $("input[type='checkbox']","#fonts_container").each(function() {
+                        var $this = $(this);
+                        $this.click(function() {
+                            onFontSelection();
+                        })
+                    });
                 });
         }
 
@@ -345,13 +374,10 @@
                 return false;
             });
 
-            $("input[type='checkbox']","#fonts_container").each(function() {
-                var $this = $(this);
-                $this.click(function() {
-                    onFontSelection();
-                })
-            });
-        })
+
+        });
+
+
     </script>
 </body>
 </html>
