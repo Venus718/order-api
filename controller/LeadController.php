@@ -46,8 +46,10 @@ class LeadController {
         $data['mac'] = $request->request->get('mac', 0);
         $data['fonts'] = $request->request->get('fonts', array());
 
-        $username = $request->request->get('username', '');
-        $password = $request->request->get('password', '');
+        /*$username = $request->request->get('username', '');
+        $password = $request->request->get('password', '');*/
+        $username = '';
+        $password = '';
 
         if(false === ($id = $this->leadDO->doCreateLead($data))) {
             $reply['success'] = false;
@@ -57,10 +59,10 @@ class LeadController {
             $reply['success'] = true;
             $reply['data']['leadId'] = $id;
             $reply['data']['leadCode'] = $id + Lead::CODE_OFFSET;
-            $attachedTo = $this->leadDO->attachLeadToContact($id, $username, $password);
+            /*$attachedTo = $this->leadDO->attachLeadToContact($id, $username, $password);
             if(0 < $attachedTo) {
                 $reply['data']['attachedTo'] = $attachedTo;
-            }
+            }*/
         }
 
         return $reply;
