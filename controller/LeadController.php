@@ -46,8 +46,8 @@ class LeadController {
         $data['mac'] = $request->request->get('mac', 0);
         $data['fonts'] = $request->request->get('fonts', array());
 
-        $username = $request->request->get('username', array());
-        $password = $request->request->get('password', array());
+        $username = $request->request->get('username', '');
+        $password = $request->request->get('password', '');
 
         if(false === ($id = $this->leadDO->doCreateLead($data))) {
             $reply['success'] = false;
