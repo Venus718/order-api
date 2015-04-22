@@ -124,7 +124,9 @@
                                     <td><input name="mac" value="1" type="checkbox"/></td>
                                 </tr>
                             </table>
+                            <div id="fonts_count">בחרת <span class="fontsCount">0</span> פונטים </div>
                             <div id="fonts_container"></div>
+                            <div id="fonts_count2">בחרת <span class="fontsCount">0</span> פונטים </div>
                         </td>
                     </tr>
                     <tr>
@@ -262,6 +264,14 @@
     </script>
 
     <script>
+        function getCheckedFontsCount() {
+            return $(".fnt_chk:checked").length;
+        }
+
+        function onFontSelection() {
+            $(".fontsCount").text(getCheckedFontsCount());
+        }
+
         function makeRowClick(grpId) {
             return function() {
                 var checked = $("#grp_chk_" + grpId).is(":checked");
@@ -275,7 +285,6 @@
             $.ajax(
                 api_url + '/catalog-fonts'
             ).then(function(catalog) {
-                    console.log(catalog);
                     var container = $("#fonts_container");
                     for(group in catalog) {
                         var row = $("<div id='group_"+group+"' class='group_row'></div>");
@@ -329,12 +338,19 @@
                 doSubmit();
                 e.preventDefault();
                 return false;
-            })
+            });
 
             $("#send").click(function() {
                 doSubmit();
                 return false;
-            })
+            });
+
+            $("input[type='checkbox']","#fonts_container").each(function() {
+                var $this = $(this);
+                $this.click(function() {
+                    onFontSelection();
+                })
+            });
         })
     </script>
 </body>
