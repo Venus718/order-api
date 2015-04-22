@@ -51,6 +51,7 @@
 
             <div id="credits" style="display: none;">
                 <span id="creditsVal">0</span> קרדיטים
+                <span id="refreshCredits" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
             </div>
         </div>
 
@@ -165,6 +166,12 @@
             return !/[^\s]/.test(s);
         }
 
+        function blink($el) {
+            for(i=0;i<3;i++) {
+                $el.fadeTo('slow', 0.5).fadeTo('slow', 1.0);
+            }
+        }
+
         function doLogin(username, password) {
             $.ajax(api_url + "/token/get", {data: {
                 "username": username,
@@ -183,6 +190,7 @@
 
         function updateCreditsEl(credits) {
             $("#creditsVal").text(credits);
+            blink($("#creditsVal"));
         }
 
         function getCredits() {
@@ -279,6 +287,10 @@
 
             $("#doLogin").click(function() {
                 login();
+            });
+
+            $("#refreshCredits").click(function() {
+                getCredits();
             });
         })
     </script>
