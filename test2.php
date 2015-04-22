@@ -149,7 +149,7 @@
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <script src="js/observer.js"></script>
     <script>
-        var api_url = "api_url.php";
+        var api_url = "api.php";
         var token = {"val": null, "expiry": null};
         var credits = null;
         var observer = new Observer();
