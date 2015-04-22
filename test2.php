@@ -247,7 +247,7 @@
         }
 
         function warnAboutNotEnoughCredits() {
-            if (isLoggedIn() && (getSelectedFontsCount() > credits)) {
+            if (isLoggedIn() && (getSelectedFontsCount() > Math.max(0, credits))) {
                 alert("חרגת מכמות הקרדיטים");
             }
         }
