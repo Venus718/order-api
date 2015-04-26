@@ -12,6 +12,7 @@ namespace dl;
 class Sale extends DLO {
 
     const SHIR = 76;
+    const FORMAT = 12;
 
     public function createSale($saleData, $contactId)
     {
@@ -81,6 +82,7 @@ class Sale extends DLO {
         if($stmt->execute()) {
             $id = $db->lastInsertId();
             $this->setSaleFonts($id, $saleData['fonts']);
+            $this->setSaleFormats($id);
             return $id;
         }
         return false;
@@ -123,5 +125,15 @@ class Sale extends DLO {
             return false;
         }
         return $this->db->execSql($sql . implode(',', $values));
+    }
+
+    public function setSaleFormats($saleId)
+    {
+        $saleId = intval($saleId, 10);
+        if(!(0 < $saleId)) {
+            return false;
+        }
+
+        return $this->db->execSql('INSERT INTO `sale_fontformat`(`sale_id`, `fontformat_id`) VALUES('.$saleId.', '.self::FORMAT.');');
     }
 }

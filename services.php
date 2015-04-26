@@ -74,6 +74,7 @@ $container
     ->register('controller.sale', '\controller\SaleController')
     ->addArgument(new Reference('sale'))
     ->addArgument(new Reference('contact'))
+    ->addArgument(new Reference('diablo'))
 ;
 
 /** ContactController */

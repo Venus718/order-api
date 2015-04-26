@@ -11,17 +11,20 @@ namespace controller;
 use dl\Contact;
 use dl\NotFoundException;
 use dl\Sale;
+use fontbit\Diablo;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 class SaleController extends Controller {
     private $saleDO;
     private $contactDO;
+    private $diablo;
 
-    function __construct(Sale $saleDO, Contact $contactDO)
+    function __construct(Sale $saleDO, Contact $contactDO, Diablo $diablo)
     {
         $this->saleDO = $saleDO;
         $this->contactDO = $contactDO;
+        $this->diablo = $diablo;
     }
 
 
@@ -117,6 +120,7 @@ class SaleController extends Controller {
 
     private function sendFontsByMail($saleId, $mailTo)
     {
+        $this->diablo->mailFonts($saleId, $mailTo);
         return true;
     }
 }

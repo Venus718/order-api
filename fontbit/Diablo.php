@@ -33,4 +33,11 @@ class Diablo {
         ));
     }
 
+    public function mailFonts($saleId, $mailTo)
+    {
+        return $this->httpClient->get($this->diabloUrl . 'out/mail-fonts/' . $saleId, array(
+            'mailTo' => $mailTo,
+        ));
+    }
+
 }
