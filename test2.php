@@ -112,6 +112,10 @@
                                     <td>remarks</td>
                                     <td><textarea name="remarks"></textarea></td>
                                 </tr>
+                                <tr id="mailtoRow" style="display: none;">
+                                    <td>mailto</td>
+                                    <td><input type="email" name="mailTo" /></td>
+                                </tr>
                                 <tr>
                                     <td>otf</td>
                                     <td><input name="otf" value="1" type="checkbox"/></td>
@@ -231,6 +235,7 @@
 
         function hideRegisterFormFields() {
             $("#register_form").hide();
+            $("#mailtoRow").show();
         }
 
         function updateTokenEl() {
@@ -356,10 +361,13 @@
             buildCatalog();
 
             function doSubmit() {
-                var action = (isLoggedIn())
-                    ? "/sale/create"
-                    : "/lead/create"
-                ;
+
+                var action = "/lead/create";
+                var redirectTo = "afterlead.php";
+                if(isLoggedIn()) {
+                    action = "/sale/create";
+                    redirectTo = "aftersale.php";
+                }
                 var j = $.ajax(
                     api_url + action,
                     {
@@ -368,9 +376,9 @@
                         'success': function(reply) {
                             if(!reply.success) {
                                 alert(reply.err);
+                                getCredits();
                             } else {
-                                alert(reply.data.leadId)
-                                document.location = 'afterlead.php';
+                                document.location = redirectTo;
                             }
 
                         }

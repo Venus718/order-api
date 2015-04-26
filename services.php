@@ -19,7 +19,7 @@ $container
 $container
     ->register('diablo', '\fontbit\Diablo')
     ->addArgument(new Reference('httpClient'))
-    ->addArgument('http://hakaveret.fontbit.co.il/~crm/')
+    ->addArgument(SERVER_END_POINT)
 ;
 
 /** DB */
@@ -73,6 +73,7 @@ $container
 $container
     ->register('controller.sale', '\controller\SaleController')
     ->addArgument(new Reference('sale'))
+    ->addArgument(new Reference('contact'))
 ;
 
 /** ContactController */
