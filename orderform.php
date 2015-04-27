@@ -80,7 +80,7 @@ if('yes' !== $visited) {
             width: auto;
             vertical-align: middle;
         }
-        .form-control, #register_form input[type=text],  #register_form textarea{
+        .form-control, #theForm input[type=text],  #theForm textarea, #theForm input[type=email] {
             display: block;
             width: 100%;
             height: 20px;
@@ -302,7 +302,7 @@ if('yes' !== $visited) {
                         <table>
 
                             <tr id="mailtoRow" style="display: none;">
-                                <td>אנא שלחו החבילה למייל: </td>
+                                <td width="152">אנא שלחו החבילה למייל: </td>
                                 <td><input type="email" name="mailTo" /></td>
                             </tr>
 
