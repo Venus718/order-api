@@ -24,7 +24,7 @@ if('yes' !== $visited) {
     <title>הזמנת פונטים</title>
 
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,40 +33,211 @@ if('yes' !== $visited) {
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <link rel="stylesheet" href="http://www.fontbit.co.il/css/new.css" type="text/css" media="screen" />
 
     <style>
+
+        @font-face {
+            font-family: 'SpacerRegular';
+            src: url('fonts/fbspacersp-regular-webfont.eot');
+            src: url('fonts/fbspacersp-regular-webfont.eot?#iefix') format('embedded-opentype'),
+            url('fonts/fbspacersp-regular-webfont.woff') format('woff'),
+            url('fonts/fbspacersp-regular-webfont.ttf') format('truetype'),
+            url('fonts/fbspacersp-regular-webfont.svg#SpacerRegular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'TypoRegular';
+            src: url('fonts/fbtipografsp-regular-webfont.eot');
+            src: url('fonts/fbtipografsp-regular-webfont.eot?#iefix') format('embedded-opentype'),
+            url('fonts/fbtipografsp-regular-webfont.woff') format('woff'),
+            url('fonts/fbtipografsp-regular-webfont.ttf') format('truetype'),
+            url('fonts/fbtipografsp-regular-webfont.svg#SpacerRegular') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'EzmelLight';
+            src: url('fonts/ezmellightwebfont.eot');
+            src: url('fonts/ezmellightwebfont.eot?#iefix') format('embedded-opentype'),
+            url('fonts/ezmellightwebfont.woff') format('woff'),
+            url('fonts/ezmellightwebfont.ttf') format('truetype'),
+            url('fonts/ezmellightwebfont.svg#EzmelLight') format('svg');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        label {
+            display: inline-block;
+            max-width: 100%;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .form-inline .form-control {
+            display: inline-block;
+            width: auto;
+            vertical-align: middle;
+        }
+        .form-control, #theForm input[type=text],  #theForm textarea, #theForm input[type=email] {
+            display: block;
+            width: 100%;
+            height: 20px;
+            padding: 6px 12px;
+            font-size: 14px;
+
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+            -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        }
+
+        body{
+            font-family:'TypoRegular', Arial;
+            font-size:16px;
+            line-height: 1.42857143;
+        }
         .group_row{
             display: table-row;
         }
         .group_row div{
             display: table-cell;
+
         }
         body {
             direction: rtl;
         }
-    </style>
+        .cont{
+            margin: 0 auto;
+            text-align:center;
+            max-width:1000px;
+        }
+        .stage input{
+            margin:0 5px!important;
+        }
+        .row{
+            direction:rtl;
+            tect-align:right;
+        }
+        .stage {
+            text-align:right;
 
+        }
+        td{
+            padding:5px;
+        }
+        .stage  textarea,.stage input[type=text].stage input[type=password]{
+            width:100%;
+            margin:0 5px!important;
+        }
+        label{
+
+            font-weight:normal;
+        }
+        .grp_div label{
+            font-weight:700;
+        }
+
+        #header{
+
+            font-family:'EzmelLight', Arial;
+        }
+        #theForm{
+            width:100%;
+        }
+        table{
+            width:100%;
+        }
+
+</style>
 
 </head>
 <body>
 
+<!--fontbit header-->
+<div id="header">
+    <div class="logo">
+        <a href="http://www.fontbit.co.il/"><img src="http://www.fontbit.co.il/images/logoN.png" height="32" alt="Fontbit" /></a></div>
+    <div class="cont">
+        <ul style="z-index:200;position:relative;">
+            <li class="search" style="position:relative;top:-1px;">
+                <form name="qsearch" id="qsearch" method="get" action="search.asp">
+                    <input type="text" name="query" id="tags" />
+                    <input type="image" name="submit" src="http://www.fontbit.co.il/images/search.png" />
+                </form>
+            </li>
+            <li  id="ourFonts" ><a href="javascript:ourFonts()">הפונטים שלנו</a></li>
+
+            <li><a href="http://www.fontbit.co.il/default.asp#about">על פונטביט</a></li>
+
+            <li ><a href="http://www.fontbit.co.il/page.asp?id=9911">מחירון</a></li>
+            <li ><a href="http://www.fontbit.co.il/page.asp?id=9910">מבצעים</a></li>
+
+            <li ><a href="http://www.fontbit.co.il/page.asp?id=7">הורדות</a></li>
+
+
+
+            <li ><a href="http://www.fontbit.co.il/forum.asp">פורום</a></li>
+            <li><a href="http://fbimages.co.il/" target="_blank">פונטביט אימגז'</a></li>
+            <li ><a href="http://www.fontbit.co.il/page.asp?id=8">יצירת קשר</a></li>
+
+
+        </ul>
+
+
+        <div style="clear:Both;"></div>
+
+    </div>
+</div>
+
+<!--fontbit header-->
+
+
+<Br /><Br />
+
+<div class="cont">
+    <div class="stage">
+        <h2>טופס הזמנת פונטים</h2>
 <div class="row">
     <div class="col-md-8"></div>
-    <div class="col-md-4">
+    <div class="col-md-12">
+        <p>
+            תהליך ההזמנה:<BR />
+            א. במידה וקיבלת שם משתמש וסיסמה מפונטביט, אנא השתמש בהם לביצוע ההזמנה,
+        אחרת מלא את פרטיך<BR />
+            ב. סמן את המשקלים שברצונך להזמין.
+            לבחירת כל המשקלים של הפונט, לחץ על תיבת הסימון בתחילת השורה
+            <BR />
+        </p>
         <form class="form-inline" id="loginForm">
-            <div class="form-group">
-                <label for="username">username</label>
-                <input type="text" class="form-control" id="username" placeholder="username">
-            </div>
-            <div class="form-group">
-                <label for="password">password</label>
-                <input type="password" class="form-control" id="password" placeholder="password">
-            </div>
-            <input class="btn btn-success" type="button" value="login" id="doLogin">
+
+            <table>
+
+        <tr>
+                <Td width="152">        <label for="username">שם משתמש</label></Td>
+                <Td>    <input type="text" class="form-control" id="username" placeholder="שם משתמש"></Td>
+        </tr>
+        <tr>
+                <td><label for="password">סיסמה</label></td>
+                <Td><input type="password" class="form-control" id="password" placeholder="סיסמה"></td>
+        </tr>
+        <Tr>
+            <td colspan="2" align="left">
+                <input class="btn btn-success" type="button" value="כניסה" id="doLogin">
+            </td></tr>
+        </table>
+
         </form>
 
         <div id="credits" style="display: none;">
-            <span id="creditsVal">0</span> קרדיטים
+           ברשותך <span id="creditsVal">0</span> קרדיטים
             <span id="refreshCredits" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
         </div>
     </div>
@@ -74,6 +245,7 @@ if('yes' !== $visited) {
 
 </div>
 
+        <hr />
 <div class="row">
     <div class="col-md-12">
         <form id="theForm">
@@ -83,40 +255,44 @@ if('yes' !== $visited) {
                     <td valign="top">
                         <table>
                             <tr>
-                                <td>name</td>
-                                <td><input name="name" value="name"/></td>
+                                <td width="152">שם מלא *</td>
+                                <td><input type="text" name="name" value=""/></td>
                             </tr>
                             <tr>
-                                <td>company_name_he</td>
-                                <td><input name="company_name_he" value="company_name_he"/></td>
+                                <td>שם חברה/עסק</td>
+                                <td><input type="text" name="company_name_he" value=""/></td>
                             </tr>
                             <tr>
-                                <td>company_name_en</td>
-                                <td><input name="company_name_en" value="company_name_en"/></td>
+                                <td>שם חברה/עסק באנגלית</td>
+                                <td><input type="text" name="company_name_en" value=""/></td>
                             </tr>
                             <tr>
-                                <td>phone</td>
-                                <td><input name="phone" value="phone"/></td>
+                                <td>טלפון *</td>
+                                <td><input type="text" name="phone" value=""/></td>
                             </tr>
                             <tr>
-                                <td>ext</td>
-                                <td><input name="ext" value="ext"/></td>
+                                <td>שלוחה</td>
+                                <td><input type="text" name="ext" value=""/></td>
                             </tr>
                             <tr>
-                                <td>mobile</td>
-                                <td><input name="mobile" value="mobile"/></td>
+                                <td>טלפון נייד</td>
+                                <td><input type="text" name="mobile" value=""/></td>
                             </tr>
                             <tr>
-                                <td>fax</td>
-                                <td><input name="fax" value="fax"/></td>
+                                <td>פקס</td>
+                                <td><input type="text" name="fax" value=""/></td>
                             </tr>
                             <tr>
-                                <td>mail</td>
-                                <td><input name="mail" value="mail"/></td>
+                                <td>כתובת מייל</td>
+                                <td><input type="text" name="mail" value=""/></td>
                             </tr>
                             <tr>
-                                <td>address</td>
-                                <td><input name="address" value="address"/></td>
+                                <td>כתובת מלאה *</td>
+                                <td><input type="text" name="address" value=""/></td>
+                            </tr>
+                            <tr>
+                                <td>הערות</td>
+                                <td><textarea name="remarks"></textarea></td>
                             </tr>
                         </table>
                     </td>
@@ -124,27 +300,32 @@ if('yes' !== $visited) {
                 <tr>
                     <td colspan="2" align="right">
                         <table>
-                            <tr>
-                                <td>remarks</td>
-                                <td><textarea name="remarks"></textarea></td>
-                            </tr>
+
                             <tr id="mailtoRow" style="display: none;">
-                                <td>mailto</td>
+                                <td width="152">אנא שלחו החבילה למייל: </td>
                                 <td><input type="email" name="mailTo" /></td>
                             </tr>
-                            <tr>
-                                <td>otf</td>
-                                <td><input name="otf" value="1" type="checkbox"/></td>
-                            </tr>
-                            <tr>
-                                <td>pc</td>
-                                <td><input name="pc" value="1" type="checkbox"/></td>
-                            </tr>
-                            <tr>
-                                <td>mac</td>
-                                <td><input name="mac" value="1" type="checkbox"/></td>
-                            </tr>
+
                         </table>
+                        <div style="display:none">
+                        <table>
+
+                                <tr>
+                                    <td>otf</td>
+                                    <td><input name="otf" value="1" type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>pc</td>
+                                    <td><input name="pc" value="1" type="checkbox"/></td>
+                                </tr>
+                                <tr>
+                                    <td>mac</td>
+                                    <td><input name="mac" value="1" type="checkbox"/></td>
+                                </tr>
+
+                        </table>
+                        </div>
+                        <hr />
                         <div id="fonts_count">בחרת <span class="fontsCount">0</span> פונטים </div>
                         <div id="fonts_container"></div>
                         <div id="fonts_count2">בחרת <span class="fontsCount">0</span> פונטים </div>
@@ -153,7 +334,7 @@ if('yes' !== $visited) {
                 <tr>
                     <td colspan="2">
                         <div>
-                            <button id="send" value="cake">cakes</button>
+                            <button id="send" value="cake">שליחת הזמנה</button>
                         </div>
                     </td>
                 </tr>
@@ -419,5 +600,6 @@ if('yes' !== $visited) {
 
 
 </script>
+</div></div>
 </body>
 </html>
