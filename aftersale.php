@@ -26,7 +26,7 @@ $theSale = $saleController->getSaleAction($saleController->getLastSaleId());
 //echo($theSale['fonts'][0]['name']);
 //echo('<br/>');
 
-dump($theSale);
+//dump($theSale);
 
 ?>
 <?php
@@ -39,7 +39,7 @@ include 'fontbit_head.php';
     <div class="stage">
         <h2>טופס הזמנת פונטים</h2>
 
-        תודה על הזמנתך <BR />
+        תודה על הזמנתך, חבילת המשקלים תשלח לכתובת המייל שציינת<BR />
         פרטי ההזמנה:<BR />
         <table>
             <tr>
