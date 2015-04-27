@@ -136,4 +136,52 @@ class Sale extends DLO {
 
         return $this->db->execSql('INSERT INTO `sale_fontformat`(`sale_id`, `fontformat_id`) VALUES('.$saleId.', '.self::FORMAT.');');
     }
+
+    public function getSale($saleId)
+    {
+        $saleId = intval($saleId, 10);
+        if(!(0 < $saleId)) {
+            return -1;
+        }
+
+        $stmt = $this->db->getStatement("select * from sale where id=:id");
+        if(!$stmt->execute(array(':id' => $saleId))) {
+            return -2;
+        }
+        $res = $stmt->fetch(\PDO::FETCH_ASSOC);
+
+        $res['fonts'] = array();
+        $res['formats'] = array();
+        $fontsStmt = $this->db->getStatement("
+            select
+                f.id id, fg.name `group`, fw.name `weight`, concat(fg.name, ' ', fw.name) `name`
+            from
+                sale_font l
+                inner join font f on(l.sale_id=:sale_id and l.font_id = f.id)
+                inner join fontgroup fg on (f.fontGroupId = fg.id)
+                inner join fontweight fw on (f.fontWeightId = fw.id)
+            order by
+                fg.name, fw.ord, fw.name
+        ");
+        if($fontsStmt->execute(array(':sale_id' => $saleId))) {
+            while($row = $fontsStmt->fetch(\PDO::FETCH_ASSOC)) {
+                $res['fonts'] []= $row;
+            }
+        }
+        $formatsStmt = $this->db->getStatement("
+            select
+                f.id id, f.name `name`
+            from
+                sale_fontformat l
+                inner join fontformat f on(l.sale_id=:sale_id and l.fontformat_id = f.id)
+            order by
+                f.name
+        ");
+        if($formatsStmt->execute(array(':sale_id' => $saleId))) {
+            while($row = $formatsStmt->fetch(\PDO::FETCH_ASSOC)) {
+                $res['formats'] []= $row;
+            }
+        }
+        return $res;
+    }
 }

@@ -136,4 +136,9 @@ class SaleController extends Controller {
         $session = new Session();
         return $session->get('lastSaleId', 0);
     }
+
+    public function getSaleAction($id)
+    {
+        return $this->saleDO->getSale($id);
+    }
 }
