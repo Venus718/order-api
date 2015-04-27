@@ -23,11 +23,40 @@ if('yes' !== $visited) {
 $saleController = $container->get('controller.sale');
 $theSale = $saleController->getSaleAction($saleController->getLastSaleId());
 
-echo($theSale['fonts'][0]['name']);
-echo('<br/>');
+//echo($theSale['fonts'][0]['name']);
+//echo('<br/>');
 
-dump($theSale);
+//dump($theSale);
 
 ?>
+<?php
+include 'header_html.php';
+include 'fontbit_head.php';
+?>
+<Br /><Br />
 
-aftersale.php
+<div class="cont">
+    <div class="stage">
+        <h2>טופס הזמנת פונטים</h2>
+
+        תודה על הזמנתך, חבילת המשקלים תשלח לכתובת המייל שציינת<BR />
+        פרטי ההזמנה:<BR />
+        <table>
+            <tr>
+                <th>מספר הזמנה:</th>
+                <td><?php echo $theSale['id'];?></td>
+            </tr>
+            <tr>
+                <th>המשקלים שהוזמנו:</th>
+                <td>
+                    <?php
+                    foreach ($theSale['fonts'] as $font) {
+                           echo $font['name'].'<BR />';
+                    }
+                    ?>
+                </td>
+            </tr>
+        </table>
+</div></div>
+</body>
+</html>
