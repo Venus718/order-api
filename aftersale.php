@@ -50,8 +50,8 @@ include 'fontbit_head.php';
                 <th>המשקלים שהוזמנו:</th>
                 <td>
                     <?php
-                    foreach ($theSale['fonts'] as $font) {
-                           echo $font[0]['name'].'<BR />';
+                    foreach ($theSale['fonts'][0] as $font) {
+                           echo $font['name'].'<BR />';
                     }
                     ?>
                 </td>
