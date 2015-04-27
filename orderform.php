@@ -1,3 +1,19 @@
+<?php
+require __DIR__ . '/header.php';
+
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+$session = new Session();
+// set and get session attributes
+$visited = $session->get('visited_terms', 'no');
+
+if('yes' !== $visited) {
+    $response = new RedirectResponse('terms.php');
+    $response->send();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="he">
 <head>
