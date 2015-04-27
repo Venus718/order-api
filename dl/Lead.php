@@ -193,10 +193,20 @@ class Lead extends DLO {
         $res = $stmt->fetch(\PDO::FETCH_ASSOC);
 
         $res['fonts'] = array();
-        $fontsStmt = $this->db->getStatement("select font_id from lead_font where lead_id=:font_id");
-        if($fontsStmt->execute(array(':font_id' => $leadId))) {
+        $fontsStmt = $this->db->getStatement("
+            select
+                f.id id, fg.name `group`, fw.name `weight`, concat(fg.name, ' ', fw.name) `name`
+            from
+                lead_font l
+                inner join font f on(l.lead_id=:lead_id and l.font_id = f.id)
+                inner join fontgroup fg on (f.fontGroupId = fg.id)
+                inner join fontweight fw on (f.fontWeightId = fw.id)
+            order by
+                fg.name, fw.ord, fw.name
+        ");
+        if($fontsStmt->execute(array(':lead_id' => $leadId))) {
             while($row = $fontsStmt->fetch(\PDO::FETCH_ASSOC)) {
-                $res['fonts'] []= $row['font_id'];
+                $res['fonts'] []= $row;
             }
         }
         return $res;

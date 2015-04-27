@@ -94,6 +94,7 @@ class SaleController extends Controller {
             return $reply;
         }
 
+        $this->storeSaleIdInSession($saleId);
         $reply['success'] = true;
         return $reply;
     }
@@ -122,5 +123,17 @@ class SaleController extends Controller {
     {
         $this->diablo->mailFonts($saleId, $mailTo);
         return true;
+    }
+
+    private function storeSaleIdInSession($saleId)
+    {
+        $session = new Session();
+        $session->set('lastSaleId', $saleId);
+    }
+
+    public function getLastSaleId()
+    {
+        $session = new Session();
+        return $session->get('lastSaleId', 0);
     }
 }

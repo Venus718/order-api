@@ -17,3 +17,7 @@ if('yes' !== $visited) {
     $response = new RedirectResponse('terms.php');
     $response->send();
 }
+
+?>
+
+aftersale.php
