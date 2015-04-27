@@ -464,13 +464,17 @@ include 'fontbit_head.php';
 <script>
 
     function checkedMandatory(){
-        if(document.formi.name.value!="" && document.formi.phone.value!="" && document.formi.address.value!=""){
-            return true;
+        if($('#register_form').css('display')!='none') {
+        //alert($('#register_form').css('display')=='none');
+            if (document.formi.name.value != "" && document.formi.phone.value != "" && document.formi.address.value != "") {
+                return true;
+            }
+            else {
+                document.formi.name.focus();
+                return false;
+            }
         }
-        else{
-            document.formi.name.focus();
-            return false;
-        }
+        return true;
     }
 
     function getSelectedFontsCount() {
