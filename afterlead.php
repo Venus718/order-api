@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 $session = new Session();
-// set and get session attributes
 $visited = $session->get('visited_terms', 'no');
 
 if('yes' !== $visited) {
@@ -23,3 +22,5 @@ if('yes' !== $visited) {
 $leadController = $container->get('controller.lead');
 $theLead = $leadController->getLeadAction($leadController->getLastLeadId());
 dump($theLead);
+?>
+afterlead.php
