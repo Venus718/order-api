@@ -238,7 +238,7 @@ if('yes' !== $visited) {
 
         <div id="credits" style="display: none;">
            ברשותך <span id="creditsVal">0</span> קרדיטים
-            <span id="refreshCredits" class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+            <span id="refreshCredits" class="glyphicon glyphicon-refresh" aria-hidden="true"><img src="images/reload.png" /></span>
         </div>
     </div>
 
