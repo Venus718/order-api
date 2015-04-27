@@ -26,7 +26,7 @@ $theSale = $saleController->getSaleAction($saleController->getLastSaleId());
 //echo($theSale['fonts'][0]['name']);
 //echo('<br/>');
 
-//dump($theSale);
+dump($theSale);
 
 ?>
 <?php

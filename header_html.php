@@ -116,6 +116,9 @@
         td{
             padding:5px;
         }
+        th{
+            text-align:right;
+        }
         .stage  textarea,.stage input[type=text].stage input[type=password]{
             width:100%;
             margin:0 5px!important;
