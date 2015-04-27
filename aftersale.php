@@ -51,7 +51,7 @@ include 'fontbit_head.php';
                 <td>
                     <?php
                     foreach ($theSale['fonts'] as $font) {
-                           echo $font[0].['name'].'<BR />';
+                           echo $font[0]['name'].'<BR />';
                     }
                     ?>
                 </td>
