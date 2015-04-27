@@ -19,3 +19,5 @@ $session->set('visited_terms', 'yes');
 
 <h1>terms!</h1>
 <h2>and cake!!!!!1!</h2>
+<br/>
+<marquee><a href="orderform.php">order</a></marquee>
