@@ -46,6 +46,16 @@ include 'fontbit_head.php';
                 <th>מספר הזמנה:</th>
                 <td><?php echo $theSale['id'];?></td>
             </tr>
+            <tr>
+                <th>המשקלים שהוזמנו:</th>
+                <td>
+                    <?php
+                    foreach ($font as $theSale['fonts']) {
+                           echo $font[0].['name'].'<BR />';
+                    }
+                    ?>
+                </td>
+            </tr>
         </table>
 </div></div>
 </body>
