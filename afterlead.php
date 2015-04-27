@@ -38,13 +38,13 @@ include 'fontbit_head.php';
         <table>
             <tr>
                 <th width="150">מספר הזמנה:</th>
-                <td><?php echo $theSale['leadCode'];?></td>
+                <td><?php echo $theLead['leadCode'];?></td>
             </tr>
             <tr>
                 <th>המשקלים שהוזמנו:</th>
                 <td>
                     <?php
-                    foreach ($theSale['fonts'] as $font) {
+                    foreach ($theLead['fonts'] as $font) {
                         echo $font['name'].'<BR />';
                     }
                     ?>
