@@ -150,8 +150,8 @@ class Contact extends DLO {
               JOIN sale p on (p.contactId = co.id)
               JOIN sale_font pp on (pp.sale_id = p.id)
               JOIN font f on (f.id = pp.font_id)
-              JOIN fontGroup fg on (fg.id = f.fontGroupId)
-              JOIN fontWeight fw on (fw.id = f.fontWeightId)
+              JOIN fontgroup fg on (fg.id = f.fontGroupId)
+              JOIN fontweight fw on (fw.id = f.fontWeightId)
             WHERE cu.id = :customerId
             GROUP BY f.id, fg.name, fw.name
             ORDER BY fg.name, fw.name
