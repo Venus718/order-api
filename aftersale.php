@@ -43,7 +43,7 @@ include 'fontbit_head.php';
         פרטי ההזמנה:<BR />
         <table>
             <tr>
-                <th>מספר הזמנה:</th>
+                <th width="150">מספר הזמנה:</th>
                 <td><?php echo $theSale['id'];?></td>
             </tr>
             <tr>

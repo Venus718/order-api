@@ -21,6 +21,36 @@ if('yes' !== $visited) {
 /** @var \controller\LeadController $leadController */
 $leadController = $container->get('controller.lead');
 $theLead = $leadController->getLeadAction($leadController->getLastLeadId());
-dump($theLead);
+//dump($theLead);
 ?>
-afterlead.php
+<?php
+include 'header_html.php';
+include 'fontbit_head.php';
+?>
+<Br /><Br />
+
+<div class="cont">
+    <div class="stage">
+        <h2>טופס הזמנת פונטים</h2>
+
+        תודה על הזמנתך<BR />
+        פרטי ההזמנה:<BR />
+        <table>
+            <tr>
+                <th width="150">מספר הזמנה:</th>
+                <td><?php echo $theLead['leadCode'];?></td>
+            </tr>
+            <tr>
+                <th>המשקלים שהוזמנו:</th>
+                <td>
+                    <?php
+                    foreach ($theLead['fonts'] as $font) {
+                        echo $font['name'].'<BR />';
+                    }
+                    ?>
+                </td>
+            </tr>
+        </table>
+    </div></div>
+</body>
+</html>

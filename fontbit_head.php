@@ -18,7 +18,7 @@
             <li ><a href="http://www.fontbit.co.il/page.asp?id=9910">מבצעים</a></li>
 
             <li ><a href="http://www.fontbit.co.il/page.asp?id=7">הורדות</a></li>
-            <li  class="on"><a href="http://order.fontbit.co.il">טופס הזמנה</a></li>
+            <li  class="on"><a href="http://orders.fontbit.co.il">טופס הזמנה</a></li>
 
 
 
