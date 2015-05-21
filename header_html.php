@@ -142,6 +142,10 @@
             width:100%;
         }
 
+        .owned {
+            color: #2e6da4;
+        }
+
     </style>
 
 </head>

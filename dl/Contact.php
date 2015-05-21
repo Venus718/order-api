@@ -86,6 +86,29 @@ class Contact extends DLO {
         return $stmt->fetchColumn();
     }
 
+    public function getTokenCustomerId($tokenVal = '')
+    {
+
+        $stmt = $this->db->getStatement('
+            SELECT
+              co.costumerId
+            FROM
+              `contacttoken` t
+              inner join contact co on (co.id=t.contactId)
+            WHERE
+              val=:val
+              and (now() between `creationDateTime` and `expiry`)
+              and (0 = `cancelled`)
+            LIMIT 1
+        ');
+
+        if (!($stmt->execute(array(':val' => $tokenVal)))) {
+            throw new NotFoundException();
+        }
+
+        return $stmt->fetchColumn();
+    }
+
     public function getTokenContact($tokenVal = '')
     {
 
@@ -116,5 +139,33 @@ class Contact extends DLO {
             return -1;
         }
         return $stmt->fetch();
+    }
+
+    public function getOwnedFonts($customerId)
+    {
+        $stmt = $this->db->getStatement('
+            SELECT f.id, fg.name as gname, fw.name as wname, count(f.id) as cnt
+            FROM customer cu
+              JOIN contact co on (co.costumerId = cu.id)
+              JOIN sale p on (p.contactId = co.id)
+              JOIN sale_font pp on (pp.sale_id = p.id)
+              JOIN font f on (f.id = pp.font_id)
+              JOIN fontGroup fg on (fg.id = f.fontGroupId)
+              JOIN fontWeight fw on (fw.id = f.fontWeightId)
+            WHERE cu.id = :customerId
+            GROUP BY f.id, fg.name, fw.name
+            ORDER BY fg.name, fw.name
+        ');
+
+        if (!($stmt->execute(array(':customerId' => $customerId)))) {
+            throw new NotFoundException();
+        }
+
+        $res = array();
+        while($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+            $res []= $row;
+        }
+
+        return $res;
     }
 }

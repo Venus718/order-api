@@ -41,5 +41,11 @@ $routes->add('token_get', new Routing\Route(
     array()
 ));
 
+$routes->add('fonts_owned', new Routing\Route(
+    '/contact/fonts',
+    array()
+));
+
+
 
 return $routes;

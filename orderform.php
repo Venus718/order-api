@@ -194,6 +194,19 @@ include 'fontbit_head.php';
         }
     }
 
+    function getOwnedFonts() {
+        console.log('in getOwnedFonts');
+        $.ajax(api_url + "/contact/fonts", {data: {
+            "token": token.val
+        }}).then(function(reply) {
+            if(reply.success) {
+                observer.event("getOwnedFonts_success").publish(reply.data.fonts);
+            } else {
+                observer.event("getOwnedFonts_failed").publish();
+            }
+        });
+    }
+
     function doLogin(username, password) {
         $.ajax(api_url + "/token/get", {data: {
             "username": username,
@@ -256,6 +269,14 @@ include 'fontbit_head.php';
         $("#mailtoRow").show();
     }
 
+    function markOwnedFonts(fonts) {
+        console.log('in markOwnedFonts', fonts);
+        for(var i = 0; i < fonts.length; i++) {
+            var el = $("#fnt_chk_" + fonts[i].id).closest("div.fnt_div");
+            el.addClass('owned');
+        }
+    }
+
     function updateTokenEl() {
         $("#token").val(token.val);
     }
@@ -266,6 +287,7 @@ include 'fontbit_head.php';
         hideLoginForm();
         showCredits();
         hideRegisterFormFields();
+        getOwnedFonts();
     }
 
     function onLoginFail() {
@@ -306,6 +328,10 @@ include 'fontbit_head.php';
 
         observer.event("selectedCountChanged").subscribe(function(selectedCount) {
             warnAboutNotEnoughCredits();
+        });
+
+        observer.event("getOwnedFonts_success").subscribe(function(fonts) {
+            markOwnedFonts(fonts);
         });
 
         $("#doLogin").click(function() {

@@ -44,6 +44,9 @@ try {
         case 'token_get':
             $response = new JsonResponse($container->get('controller.contact')->getTokenAction($request), 200);
             break;
+        case 'fonts_owned':
+            $response = new JsonResponse($container->get('controller.contact')->getOwnedFontsAction($request), 200);
+            break;
         default:
             $response = new JsonResponse('fuck', 500);
     }

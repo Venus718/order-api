@@ -80,5 +80,34 @@ class ContactController extends Controller {
         return $diabloReply;
     }
 
+    public function getOwnedFontsAction(Request $request)
+    {
+        $tokenVal = $request->request->get('token', $request->query->get('token', ''));
+
+        $reply = $this->initReply();
+
+        try {
+            $customerId = $this->contactDO->getTokenCustomerId($tokenVal);
+            $fonts = $this->contactDO->getOwnedFonts($customerId);
+
+            $reply['success'] = true;
+            $reply['data']['fonts'] = $fonts;
+
+        } catch ( NotFoundException $e ) {
+            $reply['success'] = false;
+            $reply['err'] = 'Did not find valid token matching request';
+
+        } catch ( DLException $e ) {
+            $reply['success'] = false;
+            $reply['err'] = 'DL exception';
+        } catch ( \Exception $e ) {
+            $reply['success'] = false;
+            $reply['err'] = 'Exception thrown';
+            $reply['data']['msg'] = $e->getMessage();
+        }
+
+        return $reply;
+    }
+
 
 }
