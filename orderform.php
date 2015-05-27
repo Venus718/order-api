@@ -218,7 +218,7 @@ include 'fontbit_head.php';
                 credits = 0;
                 observer.event("login_success").publish();
             } else {
-                observer.event("login_failed").publish();
+                observer.event("login_failed").publish(reply.data.errCode);
             }
         });
     }
@@ -290,8 +290,30 @@ include 'fontbit_head.php';
         getOwnedFonts();
     }
 
-    function onLoginFail() {
-        alert("שם משתמש או סיסמה שגויים");
+    function onLoginFail(errCode) {
+        errCode = parseInt(errCode, 10);
+        var msg = "שם משתמש או סיסמה שגויים";
+        switch (errCode) {
+            case -1:
+                msg = "שם משתמש או סיסמה שגויים";
+                break;
+            case -2:
+                msg = "שם משתמש או סיסמה שגויים";
+                break;
+            case -3:
+                msg = "ארעה תקלה, אנא פנה לשירות לקוחות";
+                break;
+            case -4:
+                msg = "חשבונך עדיין לא הופעל";
+                break;
+            case -5:
+                msg = "חשבונך מוקפא";
+                break;
+            default:
+                break;
+        }
+        alert(msg);
+
     }
 
     function onGetCreditsFailed() {
@@ -310,8 +332,8 @@ include 'fontbit_head.php';
     }
 
     $(function() {
-        observer.event("login_failed").subscribe(function() {
-            onLoginFail();
+        observer.event("login_failed").subscribe(function(errCode) {
+            onLoginFail(errCode);
         });
 
         observer.event("login_success").subscribe(function() {
