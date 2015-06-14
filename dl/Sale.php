@@ -62,7 +62,7 @@ class Sale extends DLO {
             null,
             :contactId,
             :userId,
-            :userId,
+            :ownerId,
             null,
             :dealId,
             ADDDATE(now(), INTERVAL 5 YEAR),
@@ -79,6 +79,7 @@ class Sale extends DLO {
         $stmt->bindParam(':sum', $saleData['sum']);
         $stmt->bindParam(':contactId', $contactId);
         $stmt->bindParam(':userId', $autoSaleUser);
+        $stmt->bindParam(':ownerId', $autoSaleUser);
         $stmt->bindParam(':dealId', $saleData['dealId']);
 
         if($stmt->execute()) {
