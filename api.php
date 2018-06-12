@@ -54,7 +54,7 @@ try {
 } catch (Routing\Exception\ResourceNotFoundException $e) {
     $response = new JsonResponse('Not Found', 404);
 } catch (Exception $e) {
-    $response = new JsonResponse('An error occurred', 500);
+    $response = new JsonResponse('An error occurred: ' . $e->getMessage(), 500);
 }
 
 $response->send();
