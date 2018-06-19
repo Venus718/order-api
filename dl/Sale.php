@@ -11,7 +11,7 @@ namespace dl;
 
 class Sale extends DLO {
 
-    const SHIR = 76;
+    const SHIR = 1179;
     const FORMAT = 12;
 
     public function createSale($saleData, $contactId)
